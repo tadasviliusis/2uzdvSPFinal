@@ -1,0 +1,166 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://spring.io/guides/gs-producing-web-service"
+           targetNamespace="http://spring.io/guides/gs-producing-web-service" elementFormDefault="qualified">
+
+    <xs:element name="getAllAccountRequest">
+        <xs:complexType/>
+    </xs:element>
+
+    <xs:element name="getAllAccountResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="allAccounts" type="tns:account"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addComponentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accountID" type="xs:int"/>
+                <xs:element name="categorieID" type="xs:int"/>
+                <xs:element name="component" type="tns:components"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addComponentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="allComponents" type="tns:components"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteShippingRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accountId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteShippingResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="isDeleted" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="changeUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accountId" type="xs:int"/>
+                <xs:element name="userName" type="xs:string"/>
+                <xs:element name="password" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="changeUserResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="account" type="tns:account"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOrderPriceRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accountId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOrderPriceResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="price" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+
+
+
+
+
+
+
+    <xs:complexType name="account">
+        <xs:sequence>
+            <xs:element type="xs:int" name="id"/>
+            <xs:element type="xs:string" name="userName"/>
+            <xs:element type="xs:string" name="password"/>
+            <xs:element name="clientShipping" type="tns:clientShipping"/>
+            <xs:element name="categories" type="tns:categories" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+
+
+    </xs:complexType>
+
+    <xs:complexType name="clientShipping">
+        <xs:sequence>
+            <xs:element type="xs:int" name="id"/>
+            <xs:element type="xs:int" name="phoneNumber"/>
+            <xs:element type="xs:string" name="address"/>
+            <xs:element type="xs:string" name="postCode"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="components">
+        <xs:sequence>
+            <xs:element type="xs:int" name="id"/>
+            <xs:element type="xs:string" name="componentName"/>
+            <xs:element type="xs:double" name="price"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="categories">
+        <xs:sequence>
+            <xs:element type="xs:int" name="id"/>
+            <xs:element type="xs:string" name="categorieName"/>
+            <xs:element name="components" type="tns:components" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="getShippingRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accoundId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getShippingResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userName" type="xs:string"/>
+                <xs:element name="clientShipping" type="tns:clientShipping"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="deleteComponentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accountId" type="xs:int"/>
+                <xs:element name="categorieId" type="xs:int"/>
+                <xs:element name="componentId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteComponentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="isDeleted" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    </xs:schema>
+
